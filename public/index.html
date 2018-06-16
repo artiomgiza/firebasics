@@ -22,15 +22,12 @@
 
   </head>
   <body>
-    Сыч! <br>
-    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRrtIBi7DWXolIDccv3dhaAap1PT8oFRi3XcUnfq-Z8kLX0_8BH
-    " alt="Italian Trulli">
-
-    <h1 id="title"></h1>
-    <input onchange="updatePost(event)">
     
-    <button onclick="googleLogin()">Login with Google</button>
-
+    <h4>Storage uploads</h4>
+    <input type="file" onchange="updateFile(this.files)">
+    <hr>
+    <img id="imgUpload" src="" width="200vw">
+    
     <script src="app.js"></script>
   </body>
 </html>
