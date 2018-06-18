@@ -18,19 +18,49 @@
     <!-- initialize the SDK after all desired features are loaded -->
     <script defer src="/__/firebase/init.js"></script>
 
-    <style media="screen">    </style>
+<style media="screen">   
+.button {
+    border: none;
+    color: white;
+    padding: 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 10px;
+}
+
+.button-blue {
+    background-color: #008CBA;
+}
+
+.button-green {
+    background-color: green;
+}
+
+html {
+  text-align: center;
+}
+
+#content {
+  
+    border: 1px solid grey;
+    padding: 15px;
+    background: url("https://d2v9y0dukr6mq2.cloudfront.net/video/thumbnail/BBmc1w7Iiq35z51n/004-hd-wood-floor-with-blank-space-and-nature-green-leaf-bokeh-background_bfj2ccmrx_thumbnail-full01.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+</style>
+
+
+
 
   </head>
   <body>
-    Сыч! <br>
-    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRrtIBi7DWXolIDccv3dhaAap1PT8oFRi3XcUnfq-Z8kLX0_8BH
-    " alt="Italian Trulli">
-
-    <h1 id="title"></h1>
-    <input onchange="updatePost(event)">
-    
-    <button onclick="googleLogin()">Login with Google</button>
-
+    <div id="content"></div>   
     <script src="app.js"></script>
   </body>
 </html>
