@@ -12,13 +12,14 @@ document.addEventListener("DOMContentLoaded", function(event) {
     firebase.auth().onAuthStateChanged(function(user) {
         sychOwner.onSnapshot(owner => {
             let owner_name = toTitleCase(owner.data().name)
+            let image_url = owner.data().image_url
 
             if (user) {
                 // User is signed in.
                 let user_name = toTitleCase(user.displayName)
                 document.getElementById('content').innerHTML = `
                     <div>
-                        ${owning_message(user_name, owner_name)}
+                        ${owning_message(user_name, owner_name, image_url)}
                         <br>
                         <button onclick="googleLogout()">Logout</button>
                     </div>
@@ -37,20 +38,12 @@ document.addEventListener("DOMContentLoaded", function(event) {
     });
 });
 
-function owning_message(user_name, owner_name) {
+function owning_message(user_name, owner_name, image_url) {
     if(user_name === owner_name) {
-        let img_url= "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRrtIBi7DWXolIDccv3dhaAap1PT8oFRi3XcUnfq-Z8kLX0_8BH&#10;"
-        let rand = Math.floor((Math.random() * 10) + 1)
-        if (rand === 1) {
-            img_url= "https://cdn.theatlantic.com/assets/media/img/photo/2017/02/a-superb-owl-sunday/s07_28749265634/main_900.jpg?1486280334"
-        } else if (rand === 2) { 
-            img_url= "https://cdn.theatlantic.com/assets/media/img/photo/2018/02/superb-owl-sunday-ii/s24_576310213/main_900.jpg?1517727256"
-        }
-
         return `
             <h4>Wo-hoo, ${user_name}!</h4> 
             <h3>Now it's yours sych!</h3>
-            <img style="max-width: 350px;" src="${img_url}" alt="sych">
+            <img style="max-width: 350px;" src="${image_url}" alt="sych">
         `
     } else {
         return `
@@ -63,8 +56,19 @@ function owning_message(user_name, owner_name) {
 }
 
 function updateSychOwner(new_owner) {
+    // generate image:
+    let img_url= "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRrtIBi7DWXolIDccv3dhaAap1PT8oFRi3XcUnfq-Z8kLX0_8BH&#10;"
+    
+    let rand = Math.floor((Math.random() * 10) + 1)
+    if (rand === 1) {
+        img_url= "https://cdn.theatlantic.com/assets/media/img/photo/2017/02/a-superb-owl-sunday/s07_28749265634/main_900.jpg?1486280334"
+    } else if (rand === 2) { 
+        img_url= "https://cdn.theatlantic.com/assets/media/img/photo/2018/02/superb-owl-sunday-ii/s24_576310213/main_900.jpg?1517727256"
+    }
+
     sychOwner.set({
-            "name": new_owner
+        "name": new_owner,
+        "image_url":img_url
     })
 }
 
